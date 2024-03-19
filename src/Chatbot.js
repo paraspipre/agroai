@@ -6,7 +6,6 @@ import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
-require("dotenv").config()
 
 const openai = new OpenAI({
   organization: process.env.ORG,
