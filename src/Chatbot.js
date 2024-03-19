@@ -8,8 +8,8 @@ import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
 
 const openai = new OpenAI({
-  organization: process.env.ORG,
-  apiKey: process.env.OPENAI,
+  organization: process.env.REACT_APP_ORG,
+  apiKey: process.env.REACT_APP_OPENAI,
   dangerouslyAllowBrowser: true
 });
 
