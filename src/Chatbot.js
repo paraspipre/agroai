@@ -8,11 +8,11 @@ import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: process.env.REACT_APP_OPENAI_API_KEY,
   dangerouslyAllowBrowser: true
 });
+
 const Chatbot = () => {
   const navigate = useNavigate()
   const [userQuery, setUserQuery] = useState('');
