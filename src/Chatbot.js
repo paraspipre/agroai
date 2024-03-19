@@ -6,10 +6,9 @@ import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
 import OpenAI from 'openai';
 import { useNavigate } from 'react-router-dom';
-var os = require("os")
 
 const openai = new OpenAI({
-  apiKey: os.get["OPENAI_API_KEY"],
+  apiKey: process.env.REACT_APP_OPENAI,
   dangerouslyAllowBrowser: true
 });
 
