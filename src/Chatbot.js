@@ -63,25 +63,25 @@ const Chatbot = () => {
     // setMessage("");
 
 
-    // openai.chat.completions
-    //   .create({
-    //     model: "gpt-3.5-turbo",
-    //     messages: [
-    //       { role: "system", content: "You are AgroAi a helpful and kind AI Agriculture Assistant" },
-    //       ...chats,
-    //     ],
-    //   }).withResponse()
-    //   .then((res) => {
-    //     msgs.push(res.data.choices[0].message);
-    //     setChats(msgs);
-    //     setIsTyping(false);
+    openai.chat.completions
+      .create({
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "You are AgroAi a helpful and kind AI Agriculture Assistant" },
+          ...chats,
+        ],
+      }).withResponse()
+      .then((res) => {
+        msgs.push(res.data.choices[0].message);
+        setChats(msgs);
+        setIsTyping(false);
 
-    //     console.log(res.data.choices[0].message.content);
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //     setIsTyping(false);
-    //   });
+        console.log(res.data.choices[0].message.content);
+      })
+      .catch((e) => {
+        console.log(e);
+        setIsTyping(false);
+      });
 
     // Scroll to the bottom to show the latest message
     // scrollToBottom();
