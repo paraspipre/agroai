@@ -81,12 +81,7 @@ const Chatbot = () => {
 
   const fetchUser = async () => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${auth}`
-        }
-      }
-      const response = await axios.get(userRoute, config, { withCredentials: true })
+      const response = await axios.get(userRoute, { withCredentials: true })
       setUser(response.data.data)
     } catch (err) {
       console.log(err)
