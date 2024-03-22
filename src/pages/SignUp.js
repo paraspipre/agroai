@@ -53,6 +53,7 @@ const SignUp = () => {
          setLoading(false)
          if (response) {
             console.log(response)
+            localStorage.setItem("accessToken", response.data.accessToken)
             navigate("/")
          } else {
             setMessage(response?.data)

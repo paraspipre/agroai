@@ -44,13 +44,13 @@ const Chatbot = () => {
   }, [th])
 
 
-  const auth = Cookies.get("accessToken")
+  const auth = localStorage.getItem("accessToken")
   console.log(auth)
-  // useEffect(() => {
-  //   if (!auth) {
-  //     navigate("/signin")
-  //   }
-  // }, [auth, navigate])
+  useEffect(() => {
+    if (!auth) {
+      navigate("/signin")
+    }
+  }, [auth, navigate])
 
 
   useEffect(() => {
@@ -170,6 +170,7 @@ const Chatbot = () => {
   const logout = async () => {
     try {
       const response = await axios.post(logoutRoute, { withCredentials: true });
+      localStorage.clear()
       navigate("/signin")
     } catch (err) {
       console.log(err)
