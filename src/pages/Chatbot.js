@@ -115,7 +115,7 @@ const Chatbot = () => {
       const response = await axios.get(historyRoute,config, { withCredentials: true })
       if (response) {
         setChathist(response.data.data)
-        console.log(chathist?.[0]?._id)
+        console.log(chathist)
         setCurrChat(chathist?.[0]?._id)
         fetchChat(currChat)
       }
