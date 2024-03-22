@@ -133,7 +133,7 @@ const Chatbot = () => {
       }
       const response = await axios.get(`${chatRoute}/${currChat}`,config, { withCredentials: true })
       if (response) {
-        setChats(response.data.data.message)
+        setChats(response.data.data.messages)
       }
     } catch (err) {
       console.log(err)
@@ -274,7 +274,7 @@ const Chatbot = () => {
           </div>
           <div className="flex flex-col gap-3 overflow-y-scroll no-scrollbar h-full mt-4">
 
-            {chats.length > 0 && chats?.map((message, index) => (
+            {chats?.length > 0 && chats?.map((message, index) => (
               <div
                 key={index}
                 className={`w-full rounded-[12px] flex  ${theme === "light" ? "bg-[#F5F5F5]" : "bg-[#35383F]"}`}
