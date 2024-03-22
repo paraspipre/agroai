@@ -11,14 +11,14 @@ const ChathistoryButton = ({ chat, index, theme, setCurrChat, fetchChatHistory, 
    const [title, setTitle] = useState("")
 
    const auth = Cookies.get("accessToken")
-   const updateChatTitle = async (chatid, title) => {
+   const updateChatTitle = async (chatid) => {
       try {
          const config = {
             headers: {
                Authorization: `Bearer ${auth}`
             }
          }
-         const response = await axios.patch(`${chatRoute}/${chatid}`, { title },config,  { withCredentials: true });
+         const response = await axios.patch(`${chatRoute}/${chatid}`,{title },config,  { withCredentials: true });
          setEdit(false)
       } catch (err) {
          console.log(err)
