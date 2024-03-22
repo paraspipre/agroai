@@ -20,6 +20,7 @@ const ChathistoryButton = ({ chat, index, theme, setCurrChat, fetchChatHistory, 
          }
          const response = await axios.patch(`${chatRoute}/${chatid}`,{title },config,  { withCredentials: true });
          setEdit(false)
+         fetchChatHistory()
       } catch (err) {
          console.log(err)
       }
