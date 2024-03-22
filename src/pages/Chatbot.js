@@ -149,8 +149,6 @@ const Chatbot = () => {
 
       const message = { role: "user", content: userQuery }
 
-      updateChat(currChat, message)
-      fetchChat(currChat)
 
       // let msgs = chats;
       // msgs.push({ role: "user", content: userQuery });
@@ -169,7 +167,7 @@ const Chatbot = () => {
           ],
         }).withResponse()
         .then((res) => {
-          updateChat(currChat, res.data.choices[0].message)
+          updateChat(currChat, userQuery,res.data.choices[0].message.content)
           fetchChat(currChat)
           setIsTyping(false);
           setUserQuery("")
@@ -206,14 +204,14 @@ const Chatbot = () => {
 
 
 
-  const updateChat = async (chatid, message) => {
+  const updateChat = async (chatid, user,ai) => {
     try {
       const config = {
         headers: {
           Authorization: `Bearer ${auth}`
         }
       }
-      const response = await axios.put(`${chatRoute}/${chatid}`,config, message, { withCredentials: true });
+      const response = await axios.put(`${chatRoute}/${chatid}`,{user,ai},config, { withCredentials: true });
 
     } catch (err) {
       console.log(err)
