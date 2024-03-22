@@ -248,14 +248,14 @@ const Chatbot = () => {
                 key={index}
                 className={`w-full rounded-[12px] flex  ${theme === "light" ? "bg-[#F5F5F5]" : "bg-[#35383F]"}`}
               >
-                <div className={`${message.role === "user" ? "flex" : "hidden"} w-full  rounded-[12px] p-4 bg-[#17CE92] text-[20px]`}><span className=' text-[24px] mr-4'>👨🏻</span>{message.content}</div>
-                <div className={`${message.role === "assistant" ? "flex" : "hidden"} p-4   `}><span className=' text-[24px] mr-4'>🤖</span> {message.content}</div>
+                <div className={` w-full  rounded-[12px] p-4 bg-[#17CE92] text-[20px]`}><span className=' text-[24px] mr-4'>👨🏻</span>{message.user}</div>
+                <div className={` p-4   `}><span className=' text-[24px] mr-4'>🤖</span> {message.ai}</div>
               </div>
             ))}
             {typing && <div
               className={`w-full  self-start received rounded-[12px] p-4 ${theme === "light" ? "bg-[#F5F5F5]" : "bg-[#35383F]"}`}
             >
-              <div className=' w-full self-end rounded-[12px] p-4 bg-[#17CE92] text-[20px]'>{userQuery}</div>
+              <div className=' w-full self-end rounded-[12px] p-4 bg-[#17CE92] text-[20px]'><span className=' text-[24px] mr-4'>👨🏻</span>{userQuery}</div>
               <div className='p-4 flex  '>🤖 typing...</div>
             </div>}
           </div>
