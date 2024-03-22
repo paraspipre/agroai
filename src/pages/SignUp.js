@@ -6,13 +6,15 @@ import { useNavigate, Link } from "react-router-dom";
 // import { isAuth } from '../utils/Utils'
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
+import { registerRoute } from '../utils/APIRoutes';
+import Cookies from 'js-cookie';
 
 const SignUp = () => {
    const navigate = useNavigate();
    const [values, setValues] = useState({
+      name:"",
       email: "",
-      password: "",
-      confpass: ""
+      password: ""
    });
    const [loading, setLoading] = useState(false)
    const [message, setMessage] = useState(null)
@@ -28,7 +30,7 @@ const SignUp = () => {
    }, [th])
 
 
-   const auth = localStorage.getItem("user")
+   const auth = Cookies.get("accessToken")
    useEffect(() => {
       if (auth) {
          navigate("/")
@@ -47,12 +49,11 @@ const SignUp = () => {
    const handleSubmit = async () => {
       setLoading(true)
       try {
-         const { email, password } = values;
-         const response = await axios.post("signinRoute", values);
+         const response = await axios.post(registerRoute, values, { withCredentials: true });
          setLoading(false)
-         if (response.status === 200) {
+         if (response) {
             console.log(response)
-            // navigate(`/profile/${response.data.user.username}`)
+            navigate("/")
          } else {
             setMessage(response?.data)
             setTimeout(() => {
@@ -66,6 +67,11 @@ const SignUp = () => {
 
    const handleChange = (event) => {
       setValues({ ...values, [event.target.name]: event.target.value });
+      // if (event.target.name === "confpass") {
+      //    if (event.target.value !== values.password) {
+            
+      //    }
+      // }
    };
    return (
       <div className={`${theme === "dark" ? "bg-[#1F222A] text-white " : "bg-[#FFF]"} flex items-center justify-between h-screen gap-3 px-4`}>
@@ -115,7 +121,6 @@ const SignUp = () => {
                      type="password"
                      placeholder="Confirm Password"
                      name="confpass"
-                     value={values.confpass}
                      onChange={(e) => handleChange(e)}
                   />
                </div>
@@ -125,7 +130,7 @@ const SignUp = () => {
             </div>
          </div>
          <div className="h-full top-0 right-0 flex-col items-center justify-center fixed w-[50%] bg-[#17CE92] hidden md:flex ">
-            <img className="h-[50%] w-[50%]" src={require("./image.png")} alt="hero" />
+            <img className="h-[50%] w-[50%]" src={require("../image.png")} alt="hero" />
          </div>
       </div>
    )

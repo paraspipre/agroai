@@ -6,6 +6,8 @@ import { useNavigate, Link } from "react-router-dom";
 // import { isAuth } from '../utils/Utils'
 import { MdOutlineWbSunny } from "react-icons/md";
 import { FaMoon } from "react-icons/fa";
+import Cookies from 'js-cookie';
+import { loginRoute } from '../utils/APIRoutes';
 
 const SignIn = () => {
    const navigate = useNavigate();
@@ -28,12 +30,12 @@ const SignIn = () => {
       }
    }, [th])
 
-   const auth = localStorage.getItem("user")
+   const auth = Cookies.get("accessToken")
    useEffect(() => {
       if (auth) {
          navigate("/")
       }
-   },[auth,navigate])
+   }, [auth, navigate])
 
    const handletheme = () => {
       if (theme === "dark") {
@@ -48,11 +50,11 @@ const SignIn = () => {
       setLoading(true)
       try {
          const { email, password } = values;
-         const response = await axios.post("signinRoute", values);
+         const response = await axios.post(loginRoute, values, { withCredentials: true });
          setLoading(false)
-         if (response.status === 200) {
+         if (response) {
             console.log(response)
-            // navigate(`/profile/${response.data.user.username}`)
+            navigate("/")
          } else {
             setMessage(response?.data)
             setTimeout(() => {
@@ -103,7 +105,7 @@ const SignIn = () => {
             </div>
          </div>
          <div className="h-full top-0 right-0 flex-col items-center justify-center fixed w-[50%] bg-[#17CE92] hidden md:flex ">
-            <img className="h-[50%] w-[50%]" src={require("./image.png")} alt="hero" />
+            <img className="h-[50%] w-[50%]" src={require("../image.png")} alt="hero" />
          </div>
       </div>
    )

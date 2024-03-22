@@ -1,7 +1,7 @@
 import './App.css';
-import Chatbot from './Chatbot';
-import SignIn from './SignIn';
-import SignUp from './SignUp';
+import Chatbot from './pages/Chatbot';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -17,5 +17,3 @@ function App() {
 }
 
 export default App;
-
-// https://www.freecodecamp.org/news/how-to-build-a-chatbot-with-openai-chatgpt-nodejs-and-react/
