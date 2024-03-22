@@ -13,12 +13,7 @@ const ChathistoryButton = ({ chat, index, theme, setCurrChat, fetchChatHistory, 
    const auth = Cookies.get("accessToken")
    const updateChatTitle = async (chatid, title) => {
       try {
-         const config = {
-            headers: {
-               Authorization: `Bearer ${auth}`
-            }
-         }
-         const response = await axios.patch(`${chatRoute}/${chatid}`, { title }, config, { withCredentials: true });
+         const response = await axios.patch(`${chatRoute}/${chatid}`, { title },  { withCredentials: true });
          setEdit(false)
       } catch (err) {
          console.log(err)
@@ -27,12 +22,7 @@ const ChathistoryButton = ({ chat, index, theme, setCurrChat, fetchChatHistory, 
 
    const deleteChat = async (chatid) => {
       try {
-         const config = {
-            headers: {
-               Authorization: `Bearer ${auth}`
-            }
-         }
-         const response = await axios.delete(`${chatRoute}/${chatid}`, config, { withCredentials: true });
+         const response = await axios.delete(`${chatRoute}/${chatid}`, { withCredentials: true });
          fetchChatHistory()
       } catch (err) {
          console.log(err)

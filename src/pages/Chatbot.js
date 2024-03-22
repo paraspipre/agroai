@@ -66,12 +66,7 @@ const Chatbot = () => {
 
   const createChat = async () => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${auth}`
-        }
-      }
-      const response = await axios.post(chatRoute, config, { withCredentials: true });
+      const response = await axios.post(chatRoute, { withCredentials: true });
       fetchChatHistory()
       setCurrChat(chathist[0]._id)
     } catch (err) {
@@ -174,12 +169,7 @@ const Chatbot = () => {
 
   const logout = async () => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${auth}`
-        }
-      }
-      const response = await axios.post(logoutRoute, config, { withCredentials: true });
+      const response = await axios.post(logoutRoute, { withCredentials: true });
       navigate("/signin")
     } catch (err) {
       console.log(err)
@@ -192,12 +182,7 @@ const Chatbot = () => {
 
   const updateChat = async (chatid, message) => {
     try {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${auth}`
-        }
-      }
-      const response = await axios.put(`${chatRoute}/${chatid}`, message, config, { withCredentials: true });
+      const response = await axios.put(`${chatRoute}/${chatid}`, message, { withCredentials: true });
 
     } catch (err) {
       console.log(err)
