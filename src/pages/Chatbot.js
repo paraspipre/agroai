@@ -66,7 +66,12 @@ const Chatbot = () => {
 
   const createChat = async () => {
     try {
-      const response = await axios.post(chatRoute, { withCredentials: true });
+      const config = {
+        headers: {
+          Authorization:`Bearer ${auth}`
+        }
+      }
+      const response = await axios.post(chatRoute,config, { withCredentials: true });
       fetchChatHistory()
       setCurrChat(chathist[0]._id)
     } catch (err) {
@@ -76,7 +81,12 @@ const Chatbot = () => {
 
   const fetchUser = async () => {
     try {
-      const response = await axios.get(userRoute, { withCredentials: true })
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth}`
+        }
+      }
+      const response = await axios.get(userRoute,config, { withCredentials: true })
       setUser(response.data.data)
     } catch (err) {
       console.log(err)
@@ -98,7 +108,12 @@ const Chatbot = () => {
 
   const fetchChatHistory = useCallback(async () => {
     try {
-      const response = await axios.get(historyRoute, { withCredentials: true })
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth}`
+        }
+      }
+      const response = await axios.get(historyRoute,config, { withCredentials: true })
       if (response) {
         setChathist(response.data.data)
         console.log(chathist)
@@ -111,7 +126,12 @@ const Chatbot = () => {
 
   const fetchChat = useCallback(async () => {
     try {
-      const response = await axios.get(`${chatRoute}/${currChat}`, { withCredentials: true })
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth}`
+        }
+      }
+      const response = await axios.get(`${chatRoute}/${currChat}`,config, { withCredentials: true })
       if (response) {
         setChats(response.data.data.message)
       }
@@ -169,7 +189,12 @@ const Chatbot = () => {
 
   const logout = async () => {
     try {
-      const response = await axios.post(logoutRoute, { withCredentials: true });
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth}`
+        }
+      }
+      const response = await axios.post(logoutRoute,config, { withCredentials: true });
       Cookies.remove("accessToken")
       navigate("/signin")
     } catch (err) {
@@ -183,7 +208,12 @@ const Chatbot = () => {
 
   const updateChat = async (chatid, message) => {
     try {
-      const response = await axios.put(`${chatRoute}/${chatid}`, message, { withCredentials: true });
+      const config = {
+        headers: {
+          Authorization: `Bearer ${auth}`
+        }
+      }
+      const response = await axios.put(`${chatRoute}/${chatid}`,config, message, { withCredentials: true });
 
     } catch (err) {
       console.log(err)
