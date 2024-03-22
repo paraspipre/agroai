@@ -45,11 +45,12 @@ const Chatbot = () => {
 
 
   const auth = Cookies.get("accessToken")
-  useEffect(() => {
-    if (!auth) {
-      navigate("/signin")
-    }
-  }, [auth, navigate])
+  console.log(auth)
+  // useEffect(() => {
+  //   if (!auth) {
+  //     navigate("/signin")
+  //   }
+  // }, [auth, navigate])
 
 
   useEffect(() => {

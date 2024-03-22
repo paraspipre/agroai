@@ -51,10 +51,10 @@ const SignIn = () => {
       try {
          const { email, password } = values;
          const response = await axios.post(loginRoute, values, { withCredentials: true });
+         navigate("/")
          setLoading(false)
          if (response) {
             console.log(response)
-            navigate("/")
          } else {
             setMessage(response?.data)
             setTimeout(() => {
