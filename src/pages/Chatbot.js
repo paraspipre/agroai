@@ -60,7 +60,6 @@ const Chatbot = () => {
 
   useEffect(() => {
     fetchChat(currChat)
-    console.log(chats)
   }, [currChat])
 
 
@@ -118,6 +117,7 @@ const Chatbot = () => {
         setChathist(response.data.data)
         console.log(chathist)
         setCurrChat(chathist?.[0]?._id)
+        fetchChat(currChat)
       }
     } catch (err) {
       console.log(err)
@@ -272,7 +272,7 @@ const Chatbot = () => {
           </div>
           <div className="flex flex-col gap-3 overflow-y-scroll no-scrollbar h-full mt-4">
 
-            {chats?.length > 0 && chats?.map((message, index) => (
+            {chats?.map((message, index) => (
               <div
                 key={index}
                 className={`w-full rounded-[12px]   ${theme === "light" ? "bg-[#F5F5F5]" : "bg-[#35383F]"}`}
@@ -280,7 +280,7 @@ const Chatbot = () => {
                 <div className={` w-full  rounded-[12px] p-4 bg-[#17CE92] text-[20px]`}><span className=' text-[24px] mr-4'>👨🏻</span>{message.user}</div>
                 <div className={` p-4   `}><span className=' text-[24px] mr-4'>🤖</span> {message.ai}</div>
               </div>
-            )) || <div> Create New Chat </div>}
+            )) || <div className='flex flex-col justify-center items-center'> Create New Chat or Select old chats </div>}
             {typing && <div
               className={`w-full  self-start received rounded-[12px] p-4 ${theme === "light" ? "bg-[#F5F5F5]" : "bg-[#35383F]"}`}
             >
