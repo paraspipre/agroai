@@ -54,7 +54,7 @@ const SignIn = () => {
          navigate("/")
          setLoading(false)
          if (response) {
-            localStorage.setItem("accessToken",response.data.accessToken)
+            Cookies.set("accessToken", response.data.data.accessToken)
             console.log(response)
          } else {
             setMessage(response?.data)

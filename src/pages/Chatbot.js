@@ -44,7 +44,7 @@ const Chatbot = () => {
   }, [th])
 
 
-  const auth = localStorage.getItem("accessToken")
+  const auth = Cookies.get("accessToken")
   console.log(auth)
   useEffect(() => {
     if (!auth) {
@@ -170,7 +170,7 @@ const Chatbot = () => {
   const logout = async () => {
     try {
       const response = await axios.post(logoutRoute, { withCredentials: true });
-      localStorage.clear()
+      Cookies.remove("accessToken")
       navigate("/signin")
     } catch (err) {
       console.log(err)
