@@ -105,7 +105,7 @@ const Chatbot = () => {
     localStorage.setItem("theme", theme)
   }
 
-  const fetchChatHistory = useCallback(async () => {
+  const fetchChatHistory = async () => {
     try {
       const config = {
         headers: {
@@ -115,14 +115,14 @@ const Chatbot = () => {
       const response = await axios.get(historyRoute,config, { withCredentials: true })
       if (response) {
         setChathist(response.data.data)
-        console.log(chathist)
+        console.log(chathist,"igbj")
         setCurrChat(chathist?.[0]?._id)
         fetchChat(currChat)
       }
     } catch (err) {
       console.log(err)
     }
-  }, [chathist])
+  }
 
   const fetchChat = useCallback(async () => {
     try {
